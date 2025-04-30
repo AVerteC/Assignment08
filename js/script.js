@@ -1,42 +1,22 @@
-import { writeFileSync } from 'fs'
+import getJSON from './modules/init.js'
 
 // CREATE AN ARRAY OF EMPLOYEES
-let arrEmployees = [
-    [34123413, "Zak Ruvalcaba", 3424, "zak@vectacorp.com", "Executive"],
-    [23424665, "Sally Smith", 2344, "sally@vectacorp.com", "Administrative"],
-    [12341244, "Mark Martin", 5352, "mark@vectacorp.com", "Sales"],
-    [14545423, "Robin Banks", 7867, "robin@vectacorp.com", "Marketing"],
-    [13413453, "Sue Wedge", 1235, "sue@vectacorp.com", "QA"]
-]
-
-function ArrayToJSON(inputArray) {
-    let data = []
-    for (let item in inputArray) {
-        let employee = {}
-        let keys = ['id', 'name', 'extension', 'email', 'title']
-        let keyIndex = 0
-        for (let detail in inputArray) {
-            employee[keys[keyIndex]] = detail
-            keyIndex += 1
-        }
-        keyIndex = 0
-        data.push(employee)
-    }
-    return data
-}
-
-function JSONToFile(inputArray, filepath) {
-    let jsonArray = JSON.stringify(inputArray, null, 2)
-    writeFileSync(`${filepath}.json`, jsonArray)
-}
-JSONToFile(ArrayToJSON(arrEmployees), '../data/employeeData')
+// let arrEmployees = [
+//     [34123413, "Zak Ruvalcaba", 3424, "zak@vectacorp.com", "Executive"],
+//     [23424665, "Sally Smith", 2344, "sally@vectacorp.com", "Administrative"],
+//     [12341244, "Mark Martin", 5352, "mark@vectacorp.com", "Sales"],
+//     [14545423, "Robin Banks", 7867, "robin@vectacorp.com", "Marketing"],
+//     [13413453, "Sue Wedge", 1235, "sue@vectacorp.com", "QA"]
+// ]
 
 // GET DOM ELEMENTS
 let empTable = document.querySelector('#employees')
 let empCount = document.querySelector('#empCount')
 
 // BUILD THE EMPLOYEES TABLE WHEN THE PAGE LOADS
-buildGrid(arrEmployees)
+buildGrid()
+
+// buildGrid(arrEmployees)
 
 // DELETE EMPLOYEE
 empTable.addEventListener('click', (e) => {
@@ -52,7 +32,16 @@ empTable.addEventListener('click', (e) => {
 })
 
 // BUILD THE EMPLOYEES GRID
-function buildGrid(arrEmployees) {
+async function buildGrid(employeeJSON) {
+    const employeeData = await getJSON
+    // console.log(employeeData.employees[0])
+    for (const employee in employeeData.employees[0]) {
+        console.log(employee)
+    }
+    // for (const key in employees) {
+    //     console.log(employees[key])
+    // }
+
     // REMOVE THE EXISTING SET OF ROWS BY REMOVING THE ENTIRE TBODY SECTION
     empTable.lastElementChild.remove()
     // REBUILD THE TBODY FROM SCRATCH
