@@ -35,5 +35,3 @@
 //     writeFileSync(`${filepath}.json`, jsonArray, 'utf-8')
 // }
 // JSONToFile(ArrayToJSON(arrEmployees), './data/employees')
-
-// // ArrayToJSON(arrEmployees)
