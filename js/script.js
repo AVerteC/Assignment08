@@ -10,13 +10,13 @@ buildGrid()
 // DELETE EMPLOYEE
 empTable.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
-        // // CONFIRM THE DELETE
-        // if (confirm('Are you sure you want to delete this employee?')) {
-        //     // GET THE SELECTED ROWINDEX FOR THE TR (PARENTNODE.PARENTNODE)
-        //     let rowIndex = e.target.parentNode.parentNode.rowIndex
-        //     // REMOVE EMPLOYEE FROM ARRAY
-        //     empTable.deleteRow(rowIndex)
-        // }
+        // CONFIRM THE DELETE
+        if (confirm('Are you sure you want to delete this employee?')) {
+            // GET THE SELECTED ROWINDEX FOR THE TR (PARENTNODE.PARENTNODE)
+            let rowIndex = e.target.parentNode.parentNode.rowIndex
+            // REMOVE EMPLOYEE FROM ARRAY
+            empTable.deleteRow(rowIndex)
+        }
     }
 })
 
@@ -39,7 +39,7 @@ async function buildGrid() {
             <td>${employee['extension']}</td>
             <td><a href="mailto:${employee['email']}">${employee['email']}</a></td>
             <td>${employee['title']}</td>
-            
+            <td><button class="btn btn-sm btn-danger delete">X</button></td>
         </tr>
         `
     }
@@ -48,6 +48,3 @@ async function buildGrid() {
     // UPDATE EMPLOYEE COUNT
     empCount.value = `(${employeeData.employees.length})`
 }
-
-// Delete buttons
-// <!--<td><button class="btn btn-sm btn-danger delete">X</button></td>-->
