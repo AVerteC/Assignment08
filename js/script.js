@@ -39,7 +39,7 @@ async function buildGrid() {
             <td>${employee['extension']}</td>
             <td><a href="mailto:${employee['email']}">${employee['email']}</a></td>
             <td>${employee['title']}</td>
-            <td><button class="btn btn-sm btn-danger delete">X</button></td>
+            
         </tr>
         `
     }
@@ -48,3 +48,6 @@ async function buildGrid() {
     // UPDATE EMPLOYEE COUNT
     empCount.value = `(${employeeData.employees.length})`
 }
+
+// Delete buttons
+// <!--<td><button class="btn btn-sm btn-danger delete">X</button></td>-->
